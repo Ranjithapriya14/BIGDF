@@ -1,0 +1,45 @@
+#data/
+#facial images
+#labels.csv contains genetic disorder labels
+import cv2
+import numpy as np
+def detect_face(image):
+    face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+    faces = face_cascade.detectMultiScale(image)
+#models
+#machine learning model
+import pandas as pd
+import numpy as np
+def load_data(image_dir, labels_file):
+    images = []
+    labels = []
+    return images, labels
+#utils
+#face detection,alignment and feature extraction
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+def train_model(features, labels):
+    model = RandomForestClassifier()
+    model.fit(features, labels)
+    return model
+#utils
+#data loading and preprocessing
+import cv2
+from utils.face_processing import detect_face
+from utils.data_loader import load_data
+from models.model import train_model
+
+images, labels = load_data('data/images/', 'data/labels.csv')
+
+features = []
+for image in images:
+    face = detect_face(image)
+    features.append(features)
+
+model = train_model(features, labels)
+
+accuracy = accuracy_score(labels, model.predict(features))
+print(f'Model accuracy: {accuracy:.3f}')
+#dependencies
+requirements.txt
